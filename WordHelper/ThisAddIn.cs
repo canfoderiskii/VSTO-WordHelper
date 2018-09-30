@@ -7,12 +7,16 @@ using Word = Microsoft.Office.Interop.Word;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Word;
 
-namespace WordHelper
-{
-    public partial class ThisAddIn
-    {
+namespace WordHelper {
+    public partial class ThisAddIn {
+        private readonly DocVarUserControl _docVarUserControl = new DocVarUserControl();
+
+        internal Microsoft.Office.Tools.CustomTaskPane DocVarPane { get; set; }
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            DocVarPane = this.CustomTaskPanes.Add(_docVarUserControl, "文档内部变量");
+            DocVarPane.Visible = false;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -30,7 +34,7 @@ namespace WordHelper
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
     }
 }
