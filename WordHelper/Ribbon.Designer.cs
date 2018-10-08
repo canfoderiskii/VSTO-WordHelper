@@ -33,7 +33,7 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.RibbonDocVarGroup = this.Factory.CreateRibbonGroup();
-            this.RibbonDocVarPaneToggle = this.Factory.CreateRibbonToggleButton();
+            this.RibbonVariablePaneToggle = this.Factory.CreateRibbonToggleButton();
             this.RibbonDocVarImport = this.Factory.CreateRibbonButton();
             this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
@@ -52,18 +52,18 @@
             // 
             // RibbonDocVarGroup
             // 
-            this.RibbonDocVarGroup.Items.Add(this.RibbonDocVarPaneToggle);
+            this.RibbonDocVarGroup.Items.Add(this.RibbonVariablePaneToggle);
             this.RibbonDocVarGroup.Items.Add(this.RibbonDocVarImport);
             this.RibbonDocVarGroup.Label = "文档变量";
             this.RibbonDocVarGroup.Name = "RibbonDocVarGroup";
             // 
-            // RibbonDocVarPaneToggle
+            // RibbonVariablePaneToggle
             // 
-            this.RibbonDocVarPaneToggle.Label = "显示变量";
-            this.RibbonDocVarPaneToggle.Name = "RibbonDocVarPaneToggle";
-            this.RibbonDocVarPaneToggle.OfficeImageId = "ViewDraftView";
-            this.RibbonDocVarPaneToggle.ShowImage = true;
-            this.RibbonDocVarPaneToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonDocVarPaneToggle_Click);
+            this.RibbonVariablePaneToggle.Label = "显示变量";
+            this.RibbonVariablePaneToggle.Name = "RibbonVariablePaneToggle";
+            this.RibbonVariablePaneToggle.OfficeImageId = "ViewDraftView";
+            this.RibbonVariablePaneToggle.ShowImage = true;
+            this.RibbonVariablePaneToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariablePaneToggle_Click);
             // 
             // RibbonDocVarImport
             // 
@@ -71,7 +71,7 @@
             this.RibbonDocVarImport.Name = "RibbonDocVarImport";
             this.RibbonDocVarImport.OfficeImageId = "MailMergeDocument";
             this.RibbonDocVarImport.ShowImage = true;
-            this.RibbonDocVarImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonDocVarImport_Click);
+            this.RibbonDocVarImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableImport_Click);
             // 
             // RibbonDevelGroup
             // 
@@ -83,7 +83,7 @@
             // 
             this.RibbonDocVarGenerator.Label = "生成变量";
             this.RibbonDocVarGenerator.Name = "RibbonDocVarGenerator";
-            this.RibbonDocVarGenerator.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonDocVarGenerator_Click);
+            this.RibbonDocVarGenerator.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableGenerator_Click);
             // 
             // Ribbon
             // 
@@ -105,7 +105,7 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonDocVarGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton RibbonDocVarPaneToggle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton RibbonVariablePaneToggle;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarImport;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonDevelGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarGenerator;
