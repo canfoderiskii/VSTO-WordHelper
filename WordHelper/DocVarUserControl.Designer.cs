@@ -27,6 +27,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DocVarDataGrid = new System.Windows.Forms.DataGridView();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocVarContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -39,9 +40,9 @@
             // 
             // DocVarDataGrid
             // 
-            this.DocVarDataGrid.AllowUserToAddRows = false;
             this.DocVarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DocVarDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.State,
             this.key,
             this.value});
             this.DocVarDataGrid.ContextMenuStrip = this.DocVarContextMenu;
@@ -52,6 +53,15 @@
             this.DocVarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DocVarDataGrid.Size = new System.Drawing.Size(243, 395);
             this.DocVarDataGrid.TabIndex = 0;
+            // 
+            // State
+            // 
+            this.State.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.State.HeaderText = "状态";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            this.State.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.State.Width = 25;
             // 
             // key
             // 
@@ -68,12 +78,12 @@
             this.DocVarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DocVarContextDelete});
             this.DocVarContextMenu.Name = "DocVarContextMenu";
-            this.DocVarContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.DocVarContextMenu.Size = new System.Drawing.Size(125, 26);
             // 
             // DocVarContextDelete
             // 
             this.DocVarContextDelete.Name = "DocVarContextDelete";
-            this.DocVarContextDelete.Size = new System.Drawing.Size(180, 22);
+            this.DocVarContextDelete.Size = new System.Drawing.Size(124, 22);
             this.DocVarContextDelete.Text = "删除条目";
             this.DocVarContextDelete.Click += new System.EventHandler(this.DocVarContextDelete_Click);
             // 
@@ -95,6 +105,7 @@
             this.DocVarConfirmButton.TabIndex = 1;
             this.DocVarConfirmButton.Text = "确认";
             this.DocVarConfirmButton.UseVisualStyleBackColor = true;
+            this.DocVarConfirmButton.Click += new System.EventHandler(this.DocVarConfirmButton_Click);
             // 
             // DocVarUserControl
             // 
@@ -114,11 +125,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DocVarDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn key;
-        private System.Windows.Forms.DataGridViewTextBoxColumn value;
         private System.Windows.Forms.Button DocVarReloadButton;
         private System.Windows.Forms.Button DocVarConfirmButton;
         private System.Windows.Forms.ContextMenuStrip DocVarContextMenu;
         private System.Windows.Forms.ToolStripMenuItem DocVarContextDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn State;
+        private System.Windows.Forms.DataGridViewTextBoxColumn key;
+        private System.Windows.Forms.DataGridViewTextBoxColumn value;
     }
 }
