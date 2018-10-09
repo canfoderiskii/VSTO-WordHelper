@@ -10,6 +10,7 @@
 - [ ] VariableControl.DataGrid: 显示上下拉的侧边栏
 - [ ] VariableControl.DataGrid: 自然排序
 - [ ] Ribbon: 显示变量的开关状态似乎反了
+- [ ] Edit.TrimTrailing: 总是会遗留一个空格
 
 ## TODO
 
