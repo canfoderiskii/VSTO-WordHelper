@@ -9,13 +9,13 @@ using Microsoft.Office.Tools.Word;
 
 namespace WordHelper {
     public partial class ThisAddIn {
-        private readonly VariableControl _variableUserControl = new VariableControl();
+        internal VariableControl VariableControl { get; set; } = new VariableControl();
 
         internal Microsoft.Office.Tools.CustomTaskPane VariablePane { get; set; }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            VariablePane = this.CustomTaskPanes.Add(_variableUserControl, "文档内部变量");
+            VariablePane = this.CustomTaskPanes.Add(VariableControl, "文档内部变量");
             VariablePane.Visible = false;
         }
 

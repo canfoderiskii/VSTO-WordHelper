@@ -27,13 +27,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.VariableDataGrid = new System.Windows.Forms.DataGridView();
-            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VariableContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.VariableContextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.VariableReloadButton = new System.Windows.Forms.Button();
             this.VariableConfirmButton = new System.Windows.Forms.Button();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.VariableDataGrid)).BeginInit();
             this.VariableContextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -53,25 +53,6 @@
             this.VariableDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.VariableDataGrid.Size = new System.Drawing.Size(243, 395);
             this.VariableDataGrid.TabIndex = 0;
-            // 
-            // State
-            // 
-            this.State.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.State.HeaderText = "状态";
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
-            this.State.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.State.Width = 25;
-            // 
-            // key
-            // 
-            this.key.HeaderText = "变量名";
-            this.key.Name = "key";
-            // 
-            // value
-            // 
-            this.value.HeaderText = "变量值";
-            this.value.Name = "value";
             // 
             // VariableContextMenu
             // 
@@ -106,6 +87,25 @@
             this.VariableConfirmButton.Text = "确认";
             this.VariableConfirmButton.UseVisualStyleBackColor = true;
             this.VariableConfirmButton.Click += new System.EventHandler(this.VariableConfirmButton_Click);
+            // 
+            // State
+            // 
+            this.State.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.State.HeaderText = "状态";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            this.State.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.State.Width = 25;
+            // 
+            // key
+            // 
+            this.key.HeaderText = "变量名";
+            this.key.Name = "key";
+            // 
+            // value
+            // 
+            this.value.HeaderText = "变量值";
+            this.value.Name = "value";
             // 
             // VariableControl
             // 

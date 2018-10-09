@@ -44,18 +44,24 @@ namespace WordHelper {
                     MessageBox.Show("Excel工作表内容格式不正确：应该只有两列！");
                     break;
                 }
-
                 // 文档内部变量有可能没有显示到变量列表控件中，需要先同步一次
-
-
+                Globals.ThisAddIn.VariableControl.SyncEntry();
                 // 遍历所有行，第1列为文档变量名，第2列为文档变量值
+                var variableCollection = new Dictionary<string, string>();
                 foreach (Excel.Range rows in usedRange.Rows) {
                     var colCell1 = (Excel.Range)rows.Cells.Item[1, 1];
                     var colCell2 = (Excel.Range)rows.Cells.Item[1, 2];
-                    var docVarName = colCell1.Value.ToString();
-                    var docVarVal = colCell2.Value.ToString();
-                    var control = (VariableControl)Globals.ThisAddIn.VariablePane.Control;
-                    control.AddEntry(VariableState.New, docVarName, docVarVal);
+                    var varName = colCell1.Value.ToString();
+                    var varVal = colCell2.Value.ToString();
+
+                    if (variableCollection.ContainsKey(varName)) {
+                        MessageBox.Show("导入文件中有重复变量定义，请检查！");
+                        continue;
+                    }
+                    variableCollection.Add(varName, varVal);
+                }
+                foreach (var index in variableCollection) {
+                    Globals.ThisAddIn.VariableControl.AddEntry(VariableState.New, index.Key, index.Value);
                 }
             } while (false);
             // 处理收尾
@@ -70,9 +76,13 @@ namespace WordHelper {
         {
             Globals.ThisAddIn.Application.ActiveDocument.Variables.Add("TESTVAR" + _count, "TESTVALUE" + _count);
             _count++;
-            // TODO: 刷新列表
         }
 
         #endregion
+
+        private void RibbonTest_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.VariableControl.DelEntry(VariableState.Sync);
+        }
     }
 }

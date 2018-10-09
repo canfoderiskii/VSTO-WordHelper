@@ -37,6 +37,7 @@
             this.RibbonDocVarImport = this.Factory.CreateRibbonButton();
             this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
+            this.RibbonTest = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.RibbonDocVarGroup.SuspendLayout();
             this.RibbonDevelGroup.SuspendLayout();
@@ -76,6 +77,7 @@
             // RibbonDevelGroup
             // 
             this.RibbonDevelGroup.Items.Add(this.RibbonDocVarGenerator);
+            this.RibbonDevelGroup.Items.Add(this.RibbonTest);
             this.RibbonDevelGroup.Label = "开发调试";
             this.RibbonDevelGroup.Name = "RibbonDevelGroup";
             // 
@@ -84,6 +86,12 @@
             this.RibbonDocVarGenerator.Label = "生成变量";
             this.RibbonDocVarGenerator.Name = "RibbonDocVarGenerator";
             this.RibbonDocVarGenerator.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableGenerator_Click);
+            // 
+            // RibbonTest
+            // 
+            this.RibbonTest.Label = "测试";
+            this.RibbonTest.Name = "RibbonTest";
+            this.RibbonTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTest_Click);
             // 
             // Ribbon
             // 
@@ -109,6 +117,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarImport;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonDevelGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarGenerator;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonTest;
     }
 
     partial class ThisRibbonCollection {
