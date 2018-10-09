@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.Win32;
 
@@ -69,7 +68,6 @@ namespace WordHelper {
         }
 
         #region 内部开发调试
-
         private static uint _count = 0;
 
         private void RibbonVariableGenerator_Click(object sender, RibbonControlEventArgs e)
@@ -77,12 +75,16 @@ namespace WordHelper {
             Globals.ThisAddIn.Application.ActiveDocument.Variables.Add("TESTVAR" + _count, "TESTVALUE" + _count);
             _count++;
         }
-
-        #endregion
-
         private void RibbonTest_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.VariableControl.DelEntry(VariableState.Sync);
         }
+        #endregion
+
+        #region 文本编辑相关功能
+        private void RibbonEditTrimRightButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.Edit.TrimTrailing(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
+        #endregion
     }
 }
