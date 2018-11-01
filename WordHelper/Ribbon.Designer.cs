@@ -32,18 +32,19 @@
         private void InitializeComponent()
         {
             this.tab1 = this.Factory.CreateRibbonTab();
+            this.RibbonEditGroup = this.Factory.CreateRibbonGroup();
+            this.RibbonEditTrimTrailing = this.Factory.CreateRibbonButton();
             this.RibbonVariableGroup = this.Factory.CreateRibbonGroup();
             this.RibbonVariablePaneToggle = this.Factory.CreateRibbonToggleButton();
             this.RibbonVariableImport = this.Factory.CreateRibbonButton();
             this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
             this.RibbonTest = this.Factory.CreateRibbonButton();
-            this.RibbonEditGroup = this.Factory.CreateRibbonGroup();
-            this.RibbonEditTrimTrailing = this.Factory.CreateRibbonButton();
+            this.RibbonEditTrimEmptyLines = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
+            this.RibbonEditGroup.SuspendLayout();
             this.RibbonVariableGroup.SuspendLayout();
             this.RibbonDevelGroup.SuspendLayout();
-            this.RibbonEditGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -54,6 +55,19 @@
             this.tab1.Groups.Add(this.RibbonDevelGroup);
             this.tab1.Label = "TabAddIns";
             this.tab1.Name = "tab1";
+            // 
+            // RibbonEditGroup
+            // 
+            this.RibbonEditGroup.Items.Add(this.RibbonEditTrimTrailing);
+            this.RibbonEditGroup.Items.Add(this.RibbonEditTrimEmptyLines);
+            this.RibbonEditGroup.Label = "文本编辑";
+            this.RibbonEditGroup.Name = "RibbonEditGroup";
+            // 
+            // RibbonEditTrimTrailing
+            // 
+            this.RibbonEditTrimTrailing.Label = "清除行尾空白";
+            this.RibbonEditTrimTrailing.Name = "RibbonEditTrimTrailing";
+            this.RibbonEditTrimTrailing.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimRightButton_Click);
             // 
             // RibbonVariableGroup
             // 
@@ -97,17 +111,11 @@
             this.RibbonTest.Name = "RibbonTest";
             this.RibbonTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTest_Click);
             // 
-            // RibbonEditGroup
+            // RibbonEditTrimEmptyLines
             // 
-            this.RibbonEditGroup.Items.Add(this.RibbonEditTrimTrailing);
-            this.RibbonEditGroup.Label = "文本编辑";
-            this.RibbonEditGroup.Name = "RibbonEditGroup";
-            // 
-            // RibbonEditTrimTrailing
-            // 
-            this.RibbonEditTrimTrailing.Label = "清除行尾空白";
-            this.RibbonEditTrimTrailing.Name = "RibbonEditTrimTrailing";
-            this.RibbonEditTrimTrailing.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimRightButton_Click);
+            this.RibbonEditTrimEmptyLines.Label = "清除空行";
+            this.RibbonEditTrimEmptyLines.Name = "RibbonEditTrimEmptyLines";
+            this.RibbonEditTrimEmptyLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimEmptyLines_Click);
             // 
             // Ribbon
             // 
@@ -117,12 +125,12 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
+            this.RibbonEditGroup.ResumeLayout(false);
+            this.RibbonEditGroup.PerformLayout();
             this.RibbonVariableGroup.ResumeLayout(false);
             this.RibbonVariableGroup.PerformLayout();
             this.RibbonDevelGroup.ResumeLayout(false);
             this.RibbonDevelGroup.PerformLayout();
-            this.RibbonEditGroup.ResumeLayout(false);
-            this.RibbonEditGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -138,6 +146,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonTest;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonEditGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimTrailing;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimEmptyLines;
     }
 
     partial class ThisRibbonCollection {

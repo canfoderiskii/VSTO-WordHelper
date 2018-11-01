@@ -185,6 +185,7 @@
   -->
   <ItemGroup>
     <Compile Include="Edit.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="VariableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

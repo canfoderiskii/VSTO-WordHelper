@@ -85,6 +85,10 @@ namespace WordHelper {
         {
             Globals.ThisAddIn.Edit.TrimTrailing(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
+        private void RibbonEditTrimEmptyLines_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.Edit.TrimEmptyLines(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
         #endregion
     }
 }

@@ -30,5 +30,14 @@ namespace WordHelper {
                 }
             }
         }
+
+        internal void TrimEmptyLines(Word.Selection selection)
+        {
+            foreach (Word.Paragraph paragraph in selection.Paragraphs) {
+                if (Utils.IsEmptyLine(paragraph)) {
+                    paragraph.Range.Delete();
+                }
+            }
+        }
     }
 }
