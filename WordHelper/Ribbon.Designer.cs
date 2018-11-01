@@ -32,16 +32,19 @@
         private void InitializeComponent()
         {
             this.tab1 = this.Factory.CreateRibbonTab();
+            this.WordHelperTab = this.Factory.CreateRibbonTab();
             this.RibbonEditGroup = this.Factory.CreateRibbonGroup();
             this.RibbonEditTrimTrailing = this.Factory.CreateRibbonButton();
+            this.RibbonEditTrimEmptyLines = this.Factory.CreateRibbonButton();
+            this.RibbonEditMergeParagraph = this.Factory.CreateRibbonButton();
             this.RibbonVariableGroup = this.Factory.CreateRibbonGroup();
             this.RibbonVariablePaneToggle = this.Factory.CreateRibbonToggleButton();
             this.RibbonVariableImport = this.Factory.CreateRibbonButton();
             this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
             this.RibbonTest = this.Factory.CreateRibbonButton();
-            this.RibbonEditTrimEmptyLines = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
+            this.WordHelperTab.SuspendLayout();
             this.RibbonEditGroup.SuspendLayout();
             this.RibbonVariableGroup.SuspendLayout();
             this.RibbonDevelGroup.SuspendLayout();
@@ -50,16 +53,23 @@
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.RibbonEditGroup);
-            this.tab1.Groups.Add(this.RibbonVariableGroup);
-            this.tab1.Groups.Add(this.RibbonDevelGroup);
             this.tab1.Label = "TabAddIns";
             this.tab1.Name = "tab1";
+            // 
+            // WordHelperTab
+            // 
+            this.WordHelperTab.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
+            this.WordHelperTab.Groups.Add(this.RibbonEditGroup);
+            this.WordHelperTab.Groups.Add(this.RibbonVariableGroup);
+            this.WordHelperTab.Groups.Add(this.RibbonDevelGroup);
+            this.WordHelperTab.Label = "WordHelper";
+            this.WordHelperTab.Name = "WordHelperTab";
             // 
             // RibbonEditGroup
             // 
             this.RibbonEditGroup.Items.Add(this.RibbonEditTrimTrailing);
             this.RibbonEditGroup.Items.Add(this.RibbonEditTrimEmptyLines);
+            this.RibbonEditGroup.Items.Add(this.RibbonEditMergeParagraph);
             this.RibbonEditGroup.Label = "文本编辑";
             this.RibbonEditGroup.Name = "RibbonEditGroup";
             // 
@@ -67,7 +77,16 @@
             // 
             this.RibbonEditTrimTrailing.Label = "清除行尾空白";
             this.RibbonEditTrimTrailing.Name = "RibbonEditTrimTrailing";
-            this.RibbonEditTrimTrailing.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimRightButton_Click);
+            // 
+            // RibbonEditTrimEmptyLines
+            // 
+            this.RibbonEditTrimEmptyLines.Label = "清除空行";
+            this.RibbonEditTrimEmptyLines.Name = "RibbonEditTrimEmptyLines";
+            // 
+            // RibbonEditMergeParagraph
+            // 
+            this.RibbonEditMergeParagraph.Label = "合并段落";
+            this.RibbonEditMergeParagraph.Name = "RibbonEditMergeParagraph";
             // 
             // RibbonVariableGroup
             // 
@@ -82,7 +101,6 @@
             this.RibbonVariablePaneToggle.Name = "RibbonVariablePaneToggle";
             this.RibbonVariablePaneToggle.OfficeImageId = "ViewDraftView";
             this.RibbonVariablePaneToggle.ShowImage = true;
-            this.RibbonVariablePaneToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariablePaneToggle_Click);
             // 
             // RibbonVariableImport
             // 
@@ -90,7 +108,6 @@
             this.RibbonVariableImport.Name = "RibbonVariableImport";
             this.RibbonVariableImport.OfficeImageId = "MailMergeDocument";
             this.RibbonVariableImport.ShowImage = true;
-            this.RibbonVariableImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableImport_Click);
             // 
             // RibbonDevelGroup
             // 
@@ -103,28 +120,23 @@
             // 
             this.RibbonDocVarGenerator.Label = "生成变量";
             this.RibbonDocVarGenerator.Name = "RibbonDocVarGenerator";
-            this.RibbonDocVarGenerator.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableGenerator_Click);
             // 
             // RibbonTest
             // 
             this.RibbonTest.Label = "测试";
             this.RibbonTest.Name = "RibbonTest";
-            this.RibbonTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTest_Click);
-            // 
-            // RibbonEditTrimEmptyLines
-            // 
-            this.RibbonEditTrimEmptyLines.Label = "清除空行";
-            this.RibbonEditTrimEmptyLines.Name = "RibbonEditTrimEmptyLines";
-            this.RibbonEditTrimEmptyLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimEmptyLines_Click);
             // 
             // Ribbon
             // 
             this.Name = "Ribbon";
             this.RibbonType = "Microsoft.Word.Document";
             this.Tabs.Add(this.tab1);
+            this.Tabs.Add(this.WordHelperTab);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
+            this.WordHelperTab.ResumeLayout(false);
+            this.WordHelperTab.PerformLayout();
             this.RibbonEditGroup.ResumeLayout(false);
             this.RibbonEditGroup.PerformLayout();
             this.RibbonVariableGroup.ResumeLayout(false);
@@ -138,15 +150,17 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonTab WordHelperTab;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonEditGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimTrailing;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimEmptyLines;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditMergeParagraph;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonVariableGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton RibbonVariablePaneToggle;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonVariableImport;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonDevelGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarGenerator;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonTest;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonEditGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimTrailing;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditTrimEmptyLines;
     }
 
     partial class ThisRibbonCollection {

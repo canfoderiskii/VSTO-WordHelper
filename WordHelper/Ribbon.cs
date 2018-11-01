@@ -89,6 +89,10 @@ namespace WordHelper {
         {
             Globals.ThisAddIn.Edit.TrimEmptyLines(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
+        private void RibbonEditMergeParagraph_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.Edit.MergeParagraph(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
         #endregion
     }
 }

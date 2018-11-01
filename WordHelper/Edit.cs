@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace WordHelper {
@@ -48,6 +50,25 @@ namespace WordHelper {
                     paragraph.Range.Delete();
                 }
             }
+        }
+        /// <summary>
+        /// 合并多个段落为一个。中间的空白段落自动消除。
+        /// </summary>
+        internal void MergeParagraph(Word.Selection selection)
+        {
+            TrimEmptyLines(selection); // 先清除空段落以便后续只需替换换行
+
+            var regex = new Regex(@"\v|\n|\r");
+            var result = regex.Replace(selection.Range.Text, "");
+            selection.Range.Text = result;
+        }
+        /// <summary>
+        /// 转换软回车为硬回车
+        /// </summary>
+        internal void ConvertLineBreak(Word.Selection selection)
+        {
+            var find = selection.Range.Find;
+            find.Execute(FindText: "^l", MatchWholeWord: true, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: "^p");
         }
     }
 }

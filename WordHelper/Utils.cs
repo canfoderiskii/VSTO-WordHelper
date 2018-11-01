@@ -6,6 +6,10 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace WordHelper {
     internal class Utils {
+        /// <summary>
+        /// 段落是否为空？（只有换行、空格、Tab、软回车）
+        /// </summary>
+        /// <returns>true: 空段落</returns>
         internal static bool IsEmpty(Word.Paragraph paragraph)
         {
             var isEmpty = true;
