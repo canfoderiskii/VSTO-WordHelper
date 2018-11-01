@@ -9,7 +9,7 @@
 - [ ] VariableControl: 长度应可以与 DataGrid 一同增长到某一界限。 需要获取当前 Word 界面长度？
 - [ ] VariableControl.DataGrid: 显示上下拉的侧边栏
 - [ ] VariableControl.DataGrid: 自然排序
-- [ ] Ribbon: 显示变量的开关状态似乎反了
+- [x] Ribbon: 显示变量的开关状态似乎反了
 - [ ] Edit.TrimTrailing: 总是会遗留一个空格
 
 ## TODO
