@@ -62,7 +62,7 @@
             this.WordHelperTab.Groups.Add(this.RibbonEditGroup);
             this.WordHelperTab.Groups.Add(this.RibbonVariableGroup);
             this.WordHelperTab.Groups.Add(this.RibbonDevelGroup);
-            this.WordHelperTab.Label = "WordHelper";
+            this.WordHelperTab.Label = "Word 辅助器";
             this.WordHelperTab.Name = "WordHelperTab";
             // 
             // RibbonEditGroup
