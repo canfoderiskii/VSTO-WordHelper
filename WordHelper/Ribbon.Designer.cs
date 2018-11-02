@@ -77,16 +77,19 @@
             // 
             this.RibbonEditTrimTrailing.Label = "清除行尾空白";
             this.RibbonEditTrimTrailing.Name = "RibbonEditTrimTrailing";
+            this.RibbonEditTrimTrailing.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimRightButton_Click);
             // 
             // RibbonEditTrimEmptyLines
             // 
             this.RibbonEditTrimEmptyLines.Label = "清除空行";
             this.RibbonEditTrimEmptyLines.Name = "RibbonEditTrimEmptyLines";
+            this.RibbonEditTrimEmptyLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditTrimEmptyLines_Click);
             // 
             // RibbonEditMergeParagraph
             // 
             this.RibbonEditMergeParagraph.Label = "合并段落";
             this.RibbonEditMergeParagraph.Name = "RibbonEditMergeParagraph";
+            this.RibbonEditMergeParagraph.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditMergeParagraph_Click);
             // 
             // RibbonVariableGroup
             // 
@@ -101,6 +104,7 @@
             this.RibbonVariablePaneToggle.Name = "RibbonVariablePaneToggle";
             this.RibbonVariablePaneToggle.OfficeImageId = "ViewDraftView";
             this.RibbonVariablePaneToggle.ShowImage = true;
+            this.RibbonVariablePaneToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariablePaneToggle_Click);
             // 
             // RibbonVariableImport
             // 
@@ -108,6 +112,7 @@
             this.RibbonVariableImport.Name = "RibbonVariableImport";
             this.RibbonVariableImport.OfficeImageId = "MailMergeDocument";
             this.RibbonVariableImport.ShowImage = true;
+            this.RibbonVariableImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableImport_Click);
             // 
             // RibbonDevelGroup
             // 
@@ -120,11 +125,13 @@
             // 
             this.RibbonDocVarGenerator.Label = "生成变量";
             this.RibbonDocVarGenerator.Name = "RibbonDocVarGenerator";
+            this.RibbonDocVarGenerator.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableGenerator_Click);
             // 
             // RibbonTest
             // 
             this.RibbonTest.Label = "测试";
             this.RibbonTest.Name = "RibbonTest";
+            this.RibbonTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTest_Click);
             // 
             // Ribbon
             // 
