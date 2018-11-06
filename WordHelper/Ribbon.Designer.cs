@@ -46,15 +46,21 @@
             this.RibbonTest = this.Factory.CreateRibbonButton();
             this.RibbonFindSelector = this.Factory.CreateRibbonComboBox();
             this.button1 = this.Factory.CreateRibbonButton();
-            this.box1 = this.Factory.CreateRibbonBox();
             this.RibbonFindReplace = this.Factory.CreateRibbonButton();
             this.RibbonReplaceSelector = this.Factory.CreateRibbonComboBox();
+            this.RibbonFindReplaceGroup = this.Factory.CreateRibbonGroup();
+            this.RibbonFindMatchCase = this.Factory.CreateRibbonCheckBox();
+            this.RibbonFindMatchWholeWord = this.Factory.CreateRibbonCheckBox();
+            this.RibbonFindWildCard = this.Factory.CreateRibbonCheckBox();
+            this.checkBox4 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox5 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox6 = this.Factory.CreateRibbonCheckBox();
             this.tab1.SuspendLayout();
             this.WordHelperTab.SuspendLayout();
             this.RibbonEditGroup.SuspendLayout();
             this.RibbonVariableGroup.SuspendLayout();
             this.RibbonDevelGroup.SuspendLayout();
-            this.box1.SuspendLayout();
+            this.RibbonFindReplaceGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -69,6 +75,7 @@
             this.WordHelperTab.Groups.Add(this.RibbonEditGroup);
             this.WordHelperTab.Groups.Add(this.RibbonVariableGroup);
             this.WordHelperTab.Groups.Add(this.RibbonDevelGroup);
+            this.WordHelperTab.Groups.Add(this.RibbonFindReplaceGroup);
             this.WordHelperTab.Label = "Word 辅助器";
             this.WordHelperTab.Name = "WordHelperTab";
             // 
@@ -78,7 +85,6 @@
             this.RibbonEditGroup.Items.Add(this.RibbonEditTrimEmptyLines);
             this.RibbonEditGroup.Items.Add(this.RibbonEditMergeParagraph);
             this.RibbonEditGroup.Items.Add(this.RibbonEditConvertLineBreak);
-            this.RibbonEditGroup.Items.Add(this.box1);
             this.RibbonEditGroup.Label = "文本编辑";
             this.RibbonEditGroup.Name = "RibbonEditGroup";
             // 
@@ -159,24 +165,63 @@
             this.button1.Label = "显示字符编码";
             this.button1.Name = "button1";
             // 
-            // box1
-            // 
-            this.box1.BoxStyle = Microsoft.Office.Tools.Ribbon.RibbonBoxStyle.Vertical;
-            this.box1.Items.Add(this.RibbonFindSelector);
-            this.box1.Items.Add(this.RibbonReplaceSelector);
-            this.box1.Items.Add(this.RibbonFindReplace);
-            this.box1.Name = "box1";
-            // 
             // RibbonFindReplace
             // 
             this.RibbonFindReplace.Label = "替换！";
             this.RibbonFindReplace.Name = "RibbonFindReplace";
+            this.RibbonFindReplace.ShowImage = true;
             this.RibbonFindReplace.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonFindReplace_Click);
             // 
             // RibbonReplaceSelector
             // 
             this.RibbonReplaceSelector.Label = "修改";
             this.RibbonReplaceSelector.Name = "RibbonReplaceSelector";
+            // 
+            // RibbonFindReplaceGroup
+            // 
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonFindSelector);
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonReplaceSelector);
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonFindReplace);
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonFindMatchCase);
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonFindMatchWholeWord);
+            this.RibbonFindReplaceGroup.Items.Add(this.RibbonFindWildCard);
+            this.RibbonFindReplaceGroup.Items.Add(this.checkBox4);
+            this.RibbonFindReplaceGroup.Items.Add(this.checkBox5);
+            this.RibbonFindReplaceGroup.Items.Add(this.checkBox6);
+            this.RibbonFindReplaceGroup.Label = "快速查找替换";
+            this.RibbonFindReplaceGroup.Name = "RibbonFindReplaceGroup";
+            // 
+            // RibbonFindMatchCase
+            // 
+            this.RibbonFindMatchCase.Label = "大小写";
+            this.RibbonFindMatchCase.Name = "RibbonFindMatchCase";
+            // 
+            // RibbonFindMatchWholeWord
+            // 
+            this.RibbonFindMatchWholeWord.Label = "全字匹配";
+            this.RibbonFindMatchWholeWord.Name = "RibbonFindMatchWholeWord";
+            // 
+            // RibbonFindWildCard
+            // 
+            this.RibbonFindWildCard.Label = "通配符";
+            this.RibbonFindWildCard.Name = "RibbonFindWildCard";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.Label = "正则表达式";
+            this.checkBox4.Name = "checkBox4";
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.Checked = true;
+            this.checkBox5.Label = "全/半角";
+            this.checkBox5.Name = "checkBox5";
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.Checked = true;
+            this.checkBox6.Label = "忽略空格";
+            this.checkBox6.Name = "checkBox6";
             // 
             // Ribbon
             // 
@@ -195,8 +240,8 @@
             this.RibbonVariableGroup.PerformLayout();
             this.RibbonDevelGroup.ResumeLayout(false);
             this.RibbonDevelGroup.PerformLayout();
-            this.box1.ResumeLayout(false);
-            this.box1.PerformLayout();
+            this.RibbonFindReplaceGroup.ResumeLayout(false);
+            this.RibbonFindReplaceGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -218,9 +263,15 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditConvertLineBreak;
         internal Microsoft.Office.Tools.Ribbon.RibbonComboBox RibbonFindSelector;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonFindReplace;
         internal Microsoft.Office.Tools.Ribbon.RibbonComboBox RibbonReplaceSelector;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonFindReplaceGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox RibbonFindMatchCase;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox RibbonFindMatchWholeWord;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox RibbonFindWildCard;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox5;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox6;
     }
 
     partial class ThisRibbonCollection {

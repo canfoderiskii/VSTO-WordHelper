@@ -5,13 +5,34 @@ using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows;
 using Word = Microsoft.Office.Interop.Word;
+using OfficeRibbon = Microsoft.Office.Tools.Ribbon;
 using Microsoft.Win32;
 
 namespace WordHelper {
     public partial class Ribbon {
+        private static readonly Dictionary<string, string> _ribbonFindReplacePresets = new Dictionary<string, string>() {
+            ["段落标记"] = "^p",
+            ["换行标记"] = "^l",
+        };
+
+        private void Ribbon_LoadFindReplaceDropDownItems()
+        {
+            // 不同的 DropDown 必须加入不同的 DropDownItem
+            foreach (var dictItem in _ribbonFindReplacePresets) {
+                var item0 = this.Factory.CreateRibbonDropDownItem();
+                var item1 = this.Factory.CreateRibbonDropDownItem();
+                item0.Label = dictItem.Value;
+                item0.ScreenTip = dictItem.Key;
+                item1.Label = dictItem.Key;
+                item1.ScreenTip = dictItem.Key;
+                RibbonFindSelector.Items.Add(item0);
+                RibbonReplaceSelector.Items.Add(item1);
+            }
+        }
         private void Ribbon_Load(object sender, RibbonUIEventArgs e)
         {
             RibbonVariablePaneToggle.Checked = Globals.ThisAddIn.VariablePane.Visible;
+            Ribbon_LoadFindReplaceDropDownItems();
         }
 
         private void RibbonVariablePaneToggle_Click(object sender, RibbonControlEventArgs e)
@@ -102,12 +123,19 @@ namespace WordHelper {
         {
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
             var find = selection.Range.Find;
+            var findText = this.RibbonFindSelector.Text;
+            var replaceText = this.RibbonReplaceSelector.Text;
 
-            // 确认“查找”内容
+            // 若没有可查找的直接退出
+            if (findText == "") {
+                return;
+            }
+            // 若查询
+            //if (_ribbonFindReplacePresets.ContainsKey(findText)) {
 
-            // 确认“替换”内容
+            //}
 
-            //find.Execute(FindText: "^l", MatchWholeWord: true, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: "^p");
+            find.Execute(FindText: findText, MatchWholeWord: this.RibbonFindMatchWholeWord.Checked, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: replaceText);
         }
         #endregion
     }
