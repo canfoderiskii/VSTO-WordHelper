@@ -37,17 +37,24 @@
             this.RibbonEditTrimTrailing = this.Factory.CreateRibbonButton();
             this.RibbonEditTrimEmptyLines = this.Factory.CreateRibbonButton();
             this.RibbonEditMergeParagraph = this.Factory.CreateRibbonButton();
+            this.RibbonEditConvertLineBreak = this.Factory.CreateRibbonButton();
             this.RibbonVariableGroup = this.Factory.CreateRibbonGroup();
             this.RibbonVariablePaneToggle = this.Factory.CreateRibbonToggleButton();
             this.RibbonVariableImport = this.Factory.CreateRibbonButton();
             this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
             this.RibbonTest = this.Factory.CreateRibbonButton();
+            this.RibbonFindSelector = this.Factory.CreateRibbonComboBox();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.box1 = this.Factory.CreateRibbonBox();
+            this.RibbonFindReplace = this.Factory.CreateRibbonButton();
+            this.RibbonReplaceSelector = this.Factory.CreateRibbonComboBox();
             this.tab1.SuspendLayout();
             this.WordHelperTab.SuspendLayout();
             this.RibbonEditGroup.SuspendLayout();
             this.RibbonVariableGroup.SuspendLayout();
             this.RibbonDevelGroup.SuspendLayout();
+            this.box1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -70,6 +77,8 @@
             this.RibbonEditGroup.Items.Add(this.RibbonEditTrimTrailing);
             this.RibbonEditGroup.Items.Add(this.RibbonEditTrimEmptyLines);
             this.RibbonEditGroup.Items.Add(this.RibbonEditMergeParagraph);
+            this.RibbonEditGroup.Items.Add(this.RibbonEditConvertLineBreak);
+            this.RibbonEditGroup.Items.Add(this.box1);
             this.RibbonEditGroup.Label = "文本编辑";
             this.RibbonEditGroup.Name = "RibbonEditGroup";
             // 
@@ -90,6 +99,12 @@
             this.RibbonEditMergeParagraph.Label = "合并段落";
             this.RibbonEditMergeParagraph.Name = "RibbonEditMergeParagraph";
             this.RibbonEditMergeParagraph.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditMergeParagraph_Click);
+            // 
+            // RibbonEditConvertLineBreak
+            // 
+            this.RibbonEditConvertLineBreak.Label = "转换软回车";
+            this.RibbonEditConvertLineBreak.Name = "RibbonEditConvertLineBreak";
+            this.RibbonEditConvertLineBreak.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonEditConvertLineBreak_Click);
             // 
             // RibbonVariableGroup
             // 
@@ -118,6 +133,7 @@
             // 
             this.RibbonDevelGroup.Items.Add(this.RibbonDocVarGenerator);
             this.RibbonDevelGroup.Items.Add(this.RibbonTest);
+            this.RibbonDevelGroup.Items.Add(this.button1);
             this.RibbonDevelGroup.Label = "开发调试";
             this.RibbonDevelGroup.Name = "RibbonDevelGroup";
             // 
@@ -132,6 +148,35 @@
             this.RibbonTest.Label = "测试";
             this.RibbonTest.Name = "RibbonTest";
             this.RibbonTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTest_Click);
+            // 
+            // RibbonFindSelector
+            // 
+            this.RibbonFindSelector.Label = "查找";
+            this.RibbonFindSelector.Name = "RibbonFindSelector";
+            // 
+            // button1
+            // 
+            this.button1.Label = "显示字符编码";
+            this.button1.Name = "button1";
+            // 
+            // box1
+            // 
+            this.box1.BoxStyle = Microsoft.Office.Tools.Ribbon.RibbonBoxStyle.Vertical;
+            this.box1.Items.Add(this.RibbonFindSelector);
+            this.box1.Items.Add(this.RibbonReplaceSelector);
+            this.box1.Items.Add(this.RibbonFindReplace);
+            this.box1.Name = "box1";
+            // 
+            // RibbonFindReplace
+            // 
+            this.RibbonFindReplace.Label = "替换！";
+            this.RibbonFindReplace.Name = "RibbonFindReplace";
+            this.RibbonFindReplace.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonFindReplace_Click);
+            // 
+            // RibbonReplaceSelector
+            // 
+            this.RibbonReplaceSelector.Label = "修改";
+            this.RibbonReplaceSelector.Name = "RibbonReplaceSelector";
             // 
             // Ribbon
             // 
@@ -150,6 +195,8 @@
             this.RibbonVariableGroup.PerformLayout();
             this.RibbonDevelGroup.ResumeLayout(false);
             this.RibbonDevelGroup.PerformLayout();
+            this.box1.ResumeLayout(false);
+            this.box1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -168,6 +215,12 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonDevelGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonDocVarGenerator;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonTest;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonEditConvertLineBreak;
+        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox RibbonFindSelector;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonFindReplace;
+        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox RibbonReplaceSelector;
     }
 
     partial class ThisRibbonCollection {

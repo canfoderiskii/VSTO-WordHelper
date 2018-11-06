@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows;
+using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
 
 namespace WordHelper {
@@ -92,6 +93,21 @@ namespace WordHelper {
         private void RibbonEditMergeParagraph_Click(object sender, RibbonControlEventArgs e)
         {
             Globals.ThisAddIn.Edit.MergeParagraph(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
+        private void RibbonEditConvertLineBreak_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.Edit.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
+        private void RibbonFindReplace_Click(object sender, RibbonControlEventArgs e)
+        {
+            var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
+            var find = selection.Range.Find;
+
+            // 确认“查找”内容
+
+            // 确认“替换”内容
+
+            //find.Execute(FindText: "^l", MatchWholeWord: true, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: "^p");
         }
         #endregion
     }
