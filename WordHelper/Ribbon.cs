@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -207,6 +208,17 @@ namespace WordHelper {
         private void RibbonReplaceSelector_ItemsLoading(object sender, RibbonControlEventArgs e)
         {
             RibbonFindReplaceSelectors_ItemsLoadingHandler(sender);
+        }
+        #endregion
+
+        #region 主菜单部分
+        private void RibbonWordHelperMenu_ItemsLoading(object sender, RibbonControlEventArgs e)
+        {
+            
+        }
+        private void RibbonMenuAbout_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.AboutBox.ShowDialog();
         }
         #endregion
     }

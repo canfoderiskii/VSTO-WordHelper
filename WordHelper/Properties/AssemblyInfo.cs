@@ -7,7 +7,7 @@ using System.Security;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WordHelper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("一种用于辅助常见 Word 操作的工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Canfoderiskii")]
 [assembly: AssemblyProduct("WordHelper")]
