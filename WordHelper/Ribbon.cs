@@ -10,22 +10,30 @@ using Microsoft.Win32;
 
 namespace WordHelper {
     public partial class Ribbon {
-        private static readonly Dictionary<string, string> _ribbonFindReplacePresets = new Dictionary<string, string>() {
-            ["段落标记"] = "^p",
-            ["换行标记"] = "^l",
-            ["制表符"] = "^t",
+        private struct FindReplaceSymbol {
+            public string ChName;
+            public string FindSyntax;
+            public string RegexSyntax;
+        };
+        private static readonly FindReplaceSymbol[] _ribbonFindReplaceSymbols = new FindReplaceSymbol[] {
+            new FindReplaceSymbol() {ChName = "段落标记", FindSyntax = "^p", RegexSyntax = @"\r"},
+            new FindReplaceSymbol() {ChName = "换行标记", FindSyntax = "^l", RegexSyntax = @"\v"},
+            new FindReplaceSymbol() {ChName = "制表符", FindSyntax = "^t", RegexSyntax = @"\t"},
+            new FindReplaceSymbol() {ChName = "分页符", FindSyntax = "^m", RegexSyntax = @"\f"},
         };
 
         private void Ribbon_LoadFindReplaceDropDownItems()
         {
             // 不同的 DropDown 必须加入不同的 DropDownItem
-            foreach (var dictItem in _ribbonFindReplacePresets) {
+            foreach (var item in _ribbonFindReplaceSymbols) {
                 var item0 = this.Factory.CreateRibbonDropDownItem();
                 var item1 = this.Factory.CreateRibbonDropDownItem();
-                item0.Label = dictItem.Value;
-                item0.ScreenTip = dictItem.Key;
-                item1.Label = dictItem.Value;
-                item1.ScreenTip = dictItem.Key;
+                item0.Label = item.ChName;
+                item0.ScreenTip = item.ChName;
+                item0.Tag = item;
+                item1.Label = item.ChName;
+                item1.ScreenTip = item.ChName;
+                item1.Tag = item;
                 RibbonFindSelector.Items.Add(item0);
                 RibbonReplaceSelector.Items.Add(item1);
             }
@@ -131,6 +139,9 @@ namespace WordHelper {
         {
             Globals.ThisAddIn.Edit.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
+        #endregion
+
+        #region 快速查找替换相关功能
         private void RibbonReplace_Click(object sender, RibbonControlEventArgs e)
         {
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
@@ -142,12 +153,12 @@ namespace WordHelper {
             if (findText == "") {
                 return;
             }
-            // 若查询
-            //if (_ribbonFindReplacePresets.ContainsKey(findText)) {
-
-            //}
-
-            find.Execute(FindText: findText, MatchCase: this.RibbonFindMatchCase.Checked, MatchWholeWord: this.RibbonFindMatchWholeWord.Checked, MatchWildcards: this.RibbonFindWildCard.Checked, MatchSoundsLike: false, MatchAllWordForms: false, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: replaceText, MatchKashida: null, MatchDiacritics: null, MatchAlefHamza: null, MatchControl: null);
+            // 非正则模式使用 Word 内置查询引擎
+            if (!this.RibbonFindRegex.Checked) {
+                find.Execute(FindText: findText, MatchCase: this.RibbonFindMatchCase.Checked, MatchWholeWord: this.RibbonFindMatchWholeWord.Checked, MatchWildcards: this.RibbonFindWildCard.Checked, MatchSoundsLike: false, MatchAllWordForms: false, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: replaceText, MatchKashida: null, MatchDiacritics: null, MatchAlefHamza: null, MatchControl: null);
+            } else { // 正则模式使用 .NET 内置正则引擎基于字符串进行替换
+                MessageBox.Show("！暂未实现正则模式！");
+            }
         }
         /// <summary>
         /// 通配符选中事件动作。通配符与正则不兼容，需要取消另外的选择。
@@ -166,6 +177,36 @@ namespace WordHelper {
             if (this.RibbonFindRegex.Checked == true) {
                 this.RibbonFindWildCard.Checked = false;
             }
+        }
+        private void RibbonFindReplaceSelectors_ItemsLoadingHandler(object sender)
+        {
+            var handleTarget = (RibbonComboBox)sender;
+            // 对于 Regex 需要使用不同的字符串
+            if (this.RibbonFindRegex.Checked == true) {
+                foreach (var item in handleTarget.Items) {
+                    var symbol = (FindReplaceSymbol)item.Tag;
+                    item.Label = symbol.RegexSyntax;
+                }
+            } else {
+                foreach (var item in handleTarget.Items) {
+                    var symbol = (FindReplaceSymbol)item.Tag;
+                    item.Label = symbol.FindSyntax;
+                }
+            }
+        }
+        /// <summary>
+        /// 快速查找下拉菜单的显示下拉内容出发事件。
+        /// </summary>
+        private void RibbonFindSelector_ItemsLoading(object sender, RibbonControlEventArgs e)
+        {
+            RibbonFindReplaceSelectors_ItemsLoadingHandler(sender);
+        }
+        /// <summary>
+        /// 快速替换下拉菜单的显示下拉内容出发事件。
+        /// </summary>
+        private void RibbonReplaceSelector_ItemsLoading(object sender, RibbonControlEventArgs e)
+        {
+            RibbonFindReplaceSelectors_ItemsLoadingHandler(sender);
         }
         #endregion
     }

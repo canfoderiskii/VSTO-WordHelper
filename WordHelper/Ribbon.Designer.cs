@@ -47,14 +47,14 @@
             this.RibbonTestDisplayCharCode = this.Factory.CreateRibbonButton();
             this.RibbonFindReplaceGroup = this.Factory.CreateRibbonGroup();
             this.RibbonFindSelector = this.Factory.CreateRibbonComboBox();
+            this.RibbonReplaceSelector = this.Factory.CreateRibbonComboBox();
+            this.box1 = this.Factory.CreateRibbonBox();
             this.RibbonFind = this.Factory.CreateRibbonButton();
             this.RibbonReplace = this.Factory.CreateRibbonButton();
-            this.RibbonReplaceSelector = this.Factory.CreateRibbonComboBox();
             this.RibbonFindWildCard = this.Factory.CreateRibbonCheckBox();
             this.RibbonFindMatchCase = this.Factory.CreateRibbonCheckBox();
             this.RibbonFindMatchWholeWord = this.Factory.CreateRibbonCheckBox();
             this.RibbonFindRegex = this.Factory.CreateRibbonCheckBox();
-            this.box1 = this.Factory.CreateRibbonBox();
             this.tab1.SuspendLayout();
             this.WordHelperTab.SuspendLayout();
             this.RibbonEditGroup.SuspendLayout();
@@ -168,6 +168,8 @@
             // 
             this.RibbonTestDisplayCharCode.Label = "显示字符编码";
             this.RibbonTestDisplayCharCode.Name = "RibbonTestDisplayCharCode";
+            this.RibbonTestDisplayCharCode.OfficeImageId = "FontDialog";
+            this.RibbonTestDisplayCharCode.ShowImage = true;
             this.RibbonTestDisplayCharCode.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTestDisplayCharCode_Click);
             // 
             // RibbonFindReplaceGroup
@@ -188,6 +190,20 @@
             this.RibbonFindSelector.MaxLength = 30;
             this.RibbonFindSelector.Name = "RibbonFindSelector";
             this.RibbonFindSelector.Text = null;
+            this.RibbonFindSelector.ItemsLoading += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonFindSelector_ItemsLoading);
+            // 
+            // RibbonReplaceSelector
+            // 
+            this.RibbonReplaceSelector.Label = "修改";
+            this.RibbonReplaceSelector.Name = "RibbonReplaceSelector";
+            this.RibbonReplaceSelector.Text = null;
+            this.RibbonReplaceSelector.ItemsLoading += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonReplaceSelector_ItemsLoading);
+            // 
+            // box1
+            // 
+            this.box1.Items.Add(this.RibbonFind);
+            this.box1.Items.Add(this.RibbonReplace);
+            this.box1.Name = "box1";
             // 
             // RibbonFind
             // 
@@ -204,12 +220,6 @@
             this.RibbonReplace.OfficeImageId = "ReplaceDialog";
             this.RibbonReplace.ShowImage = true;
             this.RibbonReplace.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonReplace_Click);
-            // 
-            // RibbonReplaceSelector
-            // 
-            this.RibbonReplaceSelector.Label = "修改";
-            this.RibbonReplaceSelector.Name = "RibbonReplaceSelector";
-            this.RibbonReplaceSelector.Text = null;
             // 
             // RibbonFindWildCard
             // 
@@ -232,12 +242,6 @@
             this.RibbonFindRegex.Label = "正则表达式";
             this.RibbonFindRegex.Name = "RibbonFindRegex";
             this.RibbonFindRegex.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonFindRegex_Click);
-            // 
-            // box1
-            // 
-            this.box1.Items.Add(this.RibbonFind);
-            this.box1.Items.Add(this.RibbonReplace);
-            this.box1.Name = "box1";
             // 
             // Ribbon
             // 
