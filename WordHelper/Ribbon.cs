@@ -13,6 +13,7 @@ namespace WordHelper {
         private static readonly Dictionary<string, string> _ribbonFindReplacePresets = new Dictionary<string, string>() {
             ["段落标记"] = "^p",
             ["换行标记"] = "^l",
+            ["制表符"] = "^t",
         };
 
         private void Ribbon_LoadFindReplaceDropDownItems()
@@ -23,7 +24,7 @@ namespace WordHelper {
                 var item1 = this.Factory.CreateRibbonDropDownItem();
                 item0.Label = dictItem.Value;
                 item0.ScreenTip = dictItem.Key;
-                item1.Label = dictItem.Key;
+                item1.Label = dictItem.Value;
                 item1.ScreenTip = dictItem.Key;
                 RibbonFindSelector.Items.Add(item0);
                 RibbonReplaceSelector.Items.Add(item1);
@@ -100,6 +101,17 @@ namespace WordHelper {
         private void RibbonTest_Click(object sender, RibbonControlEventArgs e)
         {
         }
+        private void RibbonTestDisplayCharCode_Click(object sender, RibbonControlEventArgs e)
+        {
+            var selectText = Globals.ThisAddIn.Application.ActiveWindow.Selection.Range.Text;
+            var encoding = Encoding.UTF8;
+            var textBytes = encoding.GetBytes(selectText);
+            var s = encoding + ":";
+            foreach (var b in textBytes) {
+                s += $"{b:X} ";
+            }
+            MessageBox.Show(s);
+        }
         #endregion
 
         #region 文本编辑相关功能
@@ -119,7 +131,7 @@ namespace WordHelper {
         {
             Globals.ThisAddIn.Edit.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
-        private void RibbonFindReplace_Click(object sender, RibbonControlEventArgs e)
+        private void RibbonReplace_Click(object sender, RibbonControlEventArgs e)
         {
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
             var find = selection.Range.Find;
@@ -135,7 +147,25 @@ namespace WordHelper {
 
             //}
 
-            find.Execute(FindText: findText, MatchWholeWord: this.RibbonFindMatchWholeWord.Checked, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: replaceText);
+            find.Execute(FindText: findText, MatchCase: this.RibbonFindMatchCase.Checked, MatchWholeWord: this.RibbonFindMatchWholeWord.Checked, MatchWildcards: this.RibbonFindWildCard.Checked, MatchSoundsLike: false, MatchAllWordForms: false, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: replaceText, MatchKashida: null, MatchDiacritics: null, MatchAlefHamza: null, MatchControl: null);
+        }
+        /// <summary>
+        /// 通配符选中事件动作。通配符与正则不兼容，需要取消另外的选择。
+        /// </summary>
+        private void RibbonFindWildCard_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (this.RibbonFindWildCard.Checked == true) {
+                this.RibbonFindRegex.Checked = false;
+            }
+        }
+        /// <summary>
+        /// 正则表达式选中事件动作。通配符与正则不兼容，需要取消另外的选择。
+        /// </summary>
+        private void RibbonFindRegex_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (this.RibbonFindRegex.Checked == true) {
+                this.RibbonFindWildCard.Checked = false;
+            }
         }
         #endregion
     }
