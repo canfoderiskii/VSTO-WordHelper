@@ -7,14 +7,29 @@ using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace WordHelper {
-    internal class Edit {
-        internal Edit()
+    internal static class Paragraph {
+        /// <summary>
+        /// 段落是否为空？（只有换行、空格、Tab、软回车）
+        /// </summary>
+        /// <returns>true: 空段落</returns>
+        internal static bool IsEmpty(Word.Paragraph paragraph)
         {
+            var isEmpty = true;
+            var characters = paragraph.Range.Characters;
+            foreach (Word.Range character in characters) {
+                var text = character.Text;
+                // '\v' 是为了消除存在软回车的段落
+                if (text == "\r" || text == "\n" || text == " " || text == "\t" || text == "\v") {
+                    continue;
+                }
+                isEmpty = false;
+            }
+            return isEmpty;
         }
         /// <summary>
         /// 清除选中部分中每个段落结尾的空格/Tab
         /// </summary>
-        internal void TrimTrailing(Word.Selection selection)
+        internal static void TrimTrailing(Word.Selection selection)
         {
             var paragraphs = selection.Paragraphs;
 
@@ -43,10 +58,10 @@ namespace WordHelper {
         /// <summary>
         /// 删除选中部分中完全空的段落
         /// </summary>
-        internal void TrimEmptyLines(Word.Selection selection)
+        internal static void TrimEmptyLines(Word.Selection selection)
         {
             foreach (Word.Paragraph paragraph in selection.Paragraphs) {
-                if (Utils.IsEmpty(paragraph)) {
+                if (IsEmpty(paragraph)) {
                     paragraph.Range.Delete();
                 }
             }
@@ -54,7 +69,7 @@ namespace WordHelper {
         /// <summary>
         /// 合并多个段落为一个。中间的空白段落自动消除。
         /// </summary>
-        internal void MergeParagraph(Word.Selection selection)
+        internal static void MergeParagraph(Word.Selection selection)
         {
             TrimEmptyLines(selection); // 先清除空段落以便后续只需替换换行
 
@@ -65,7 +80,7 @@ namespace WordHelper {
         /// <summary>
         /// 转换软回车为硬回车
         /// </summary>
-        internal void ConvertLineBreak(Word.Selection selection)
+        internal static void ConvertLineBreak(Word.Selection selection)
         {
             var find = selection.Range.Find;
             find.Execute(FindText: "^l", MatchWholeWord: true, Forward: false, Wrap: Word.WdFindWrap.wdFindStop, Replace: Word.WdReplace.wdReplaceAll, ReplaceWith: "^p");

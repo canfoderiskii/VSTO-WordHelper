@@ -190,7 +190,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edit.cs" />
+    <Compile Include="Paragraph.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="VariableControl.cs">

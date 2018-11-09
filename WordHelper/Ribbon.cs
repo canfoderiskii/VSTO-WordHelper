@@ -127,19 +127,19 @@ namespace WordHelper {
         #region 文本编辑相关功能
         private void RibbonEditTrimRightButton_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.Edit.TrimTrailing(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+            Paragraph.TrimTrailing(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         private void RibbonEditTrimEmptyLines_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.Edit.TrimEmptyLines(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+            Paragraph.TrimEmptyLines(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         private void RibbonEditMergeParagraph_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.Edit.MergeParagraph(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+            Paragraph.MergeParagraph(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         private void RibbonEditConvertLineBreak_Click(object sender, RibbonControlEventArgs e)
         {
-            Globals.ThisAddIn.Edit.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+            Paragraph.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         #endregion
         #region 表格

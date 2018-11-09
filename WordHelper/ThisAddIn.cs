@@ -9,7 +9,6 @@ namespace WordHelper {
     public partial class ThisAddIn {
         internal VariableControl VariableControl { get; set; } = new VariableControl();
         internal AboutBox AboutBox { get; set; } = new AboutBox();
-        internal Edit Edit { get; set; } = new Edit();
 
         internal Microsoft.Office.Tools.CustomTaskPane VariablePane { get; set; }
 
