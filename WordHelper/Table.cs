@@ -164,32 +164,27 @@ namespace WordHelper {
             var pageSpan = lastCellPageNum - cellPageNum + 1;
             // 如果不跨多页，结束操作
             if (pageSpan < 2) {
+                cell.Merge(table.Cell(lastRowIndex, cell.ColumnIndex));
                 MessageBox.Show("单元格不跨页！");
                 return;
             }
-            // 若跨页，用二分法查找开始刚开始跨页的单元格
-            //for (var middleIndex = cell.RowIndex + cellActualRowCount / 2; middleIndex)
-
-
+            // 以下肯定跨页
             var splitBaseCells = new List<Word.Cell> { cell };
             var curBaseCell = splitBaseCells[splitBaseCells.Count - 1];
             var curBaseCellPageNum = GetCellPageNum(curBaseCell);
-
-
             // 查找每个基本单元格的页码
             for (var curRowIndex = cell.RowIndex + 1; curRowIndex < cell.RowIndex + cellRowSpan; curRowIndex++) {
                 var curCell = table.Cell(curRowIndex, curBaseCell.ColumnIndex);
                 var curCellPageNum = GetCellPageNum(curCell);
                 if (curCellPageNum > curBaseCellPageNum) { // 找到某个基本单元格在另外一页
                     splitBaseCells.Add(curCell); // 该页第一个基本单元格为新的基准单元格
+                    // 若已经与最后一格单元格的页码相同，提前结束
+                    if (curCellPageNum == lastCellPageNum) {
+                        break;
+                    }
                     curBaseCell = curCell;
                     curBaseCellPageNum = GetCellPageNum(curCell);
                 }
-            }
-            // 若没有跨页，直接重新合并
-            if (pageSpan < 2) {
-                cell.Merge(table.Cell(lastRowIndex, cell.ColumnIndex));
-                return;
             }
             // 跨页，准备合并、复制内容
             //cell.Range.Copy();
