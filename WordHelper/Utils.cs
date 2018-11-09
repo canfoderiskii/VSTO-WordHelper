@@ -24,5 +24,9 @@ namespace WordHelper {
             }
             return isEmpty;
         }
+        internal static int GetPageNumber(Word.Range range)
+        {
+            return (int)range.Information[Word.WdInformation.wdActiveEndPageNumber];
+        }
     }
 }

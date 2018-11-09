@@ -35,7 +35,6 @@
             this.WordHelperTab = this.Factory.CreateRibbonTab();
             this.RibbonEditGroup = this.Factory.CreateRibbonGroup();
             this.RibbonVariableGroup = this.Factory.CreateRibbonGroup();
-            this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
             this.RibbonFindReplaceGroup = this.Factory.CreateRibbonGroup();
             this.RibbonFindSelector = this.Factory.CreateRibbonComboBox();
             this.RibbonReplaceSelector = this.Factory.CreateRibbonComboBox();
@@ -44,6 +43,8 @@
             this.RibbonFindMatchCase = this.Factory.CreateRibbonCheckBox();
             this.RibbonFindMatchWholeWord = this.Factory.CreateRibbonCheckBox();
             this.RibbonFindRegex = this.Factory.CreateRibbonCheckBox();
+            this.RibbonDevelGroup = this.Factory.CreateRibbonGroup();
+            this.RibbonTableGroup = this.Factory.CreateRibbonGroup();
             this.RibbonMenu = this.Factory.CreateRibbonMenu();
             this.RibbonMenuAbout = this.Factory.CreateRibbonButton();
             this.RibbonEditTrimTrailing = this.Factory.CreateRibbonButton();
@@ -52,18 +53,21 @@
             this.RibbonEditConvertLineBreak = this.Factory.CreateRibbonButton();
             this.RibbonVariablePaneToggle = this.Factory.CreateRibbonToggleButton();
             this.RibbonVariableImport = this.Factory.CreateRibbonButton();
+            this.RibbonFind = this.Factory.CreateRibbonButton();
+            this.RibbonReplace = this.Factory.CreateRibbonButton();
             this.RibbonDocVarGenerator = this.Factory.CreateRibbonButton();
             this.RibbonTest = this.Factory.CreateRibbonButton();
             this.RibbonTestDisplayCharCode = this.Factory.CreateRibbonButton();
-            this.RibbonFind = this.Factory.CreateRibbonButton();
-            this.RibbonReplace = this.Factory.CreateRibbonButton();
+            this.RibbonVerticalSplitCell = this.Factory.CreateRibbonButton();
+            this.RibbonHorizontalSplitCell = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.WordHelperTab.SuspendLayout();
             this.RibbonEditGroup.SuspendLayout();
             this.RibbonVariableGroup.SuspendLayout();
-            this.RibbonDevelGroup.SuspendLayout();
             this.RibbonFindReplaceGroup.SuspendLayout();
             this.box1.SuspendLayout();
+            this.RibbonDevelGroup.SuspendLayout();
+            this.RibbonTableGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -77,6 +81,7 @@
             this.WordHelperTab.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.WordHelperTab.Groups.Add(this.RibbonEditGroup);
             this.WordHelperTab.Groups.Add(this.RibbonVariableGroup);
+            this.WordHelperTab.Groups.Add(this.RibbonTableGroup);
             this.WordHelperTab.Groups.Add(this.RibbonFindReplaceGroup);
             this.WordHelperTab.Groups.Add(this.RibbonDevelGroup);
             this.WordHelperTab.Label = "Word 辅助器";
@@ -97,14 +102,6 @@
             this.RibbonVariableGroup.Items.Add(this.RibbonVariableImport);
             this.RibbonVariableGroup.Label = "文档变量";
             this.RibbonVariableGroup.Name = "RibbonVariableGroup";
-            // 
-            // RibbonDevelGroup
-            // 
-            this.RibbonDevelGroup.Items.Add(this.RibbonDocVarGenerator);
-            this.RibbonDevelGroup.Items.Add(this.RibbonTest);
-            this.RibbonDevelGroup.Items.Add(this.RibbonTestDisplayCharCode);
-            this.RibbonDevelGroup.Label = "开发调试";
-            this.RibbonDevelGroup.Name = "RibbonDevelGroup";
             // 
             // RibbonFindReplaceGroup
             // 
@@ -160,6 +157,21 @@
             this.RibbonFindRegex.Label = "正则表达式";
             this.RibbonFindRegex.Name = "RibbonFindRegex";
             this.RibbonFindRegex.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonFindRegex_Click);
+            // 
+            // RibbonDevelGroup
+            // 
+            this.RibbonDevelGroup.Items.Add(this.RibbonDocVarGenerator);
+            this.RibbonDevelGroup.Items.Add(this.RibbonTest);
+            this.RibbonDevelGroup.Items.Add(this.RibbonTestDisplayCharCode);
+            this.RibbonDevelGroup.Label = "开发调试";
+            this.RibbonDevelGroup.Name = "RibbonDevelGroup";
+            // 
+            // RibbonTableGroup
+            // 
+            this.RibbonTableGroup.Items.Add(this.RibbonVerticalSplitCell);
+            this.RibbonTableGroup.Items.Add(this.RibbonHorizontalSplitCell);
+            this.RibbonTableGroup.Label = "表格";
+            this.RibbonTableGroup.Name = "RibbonTableGroup";
             // 
             // RibbonMenu
             // 
@@ -229,6 +241,22 @@
             this.RibbonVariableImport.ShowImage = true;
             this.RibbonVariableImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVariableImport_Click);
             // 
+            // RibbonFind
+            // 
+            this.RibbonFind.Label = "查找！";
+            this.RibbonFind.Name = "RibbonFind";
+            this.RibbonFind.OfficeImageId = "NavigationPaneFind";
+            this.RibbonFind.ScreenTip = "RibbonReplace";
+            this.RibbonFind.ShowImage = true;
+            // 
+            // RibbonReplace
+            // 
+            this.RibbonReplace.Label = "替换！";
+            this.RibbonReplace.Name = "RibbonReplace";
+            this.RibbonReplace.OfficeImageId = "ReplaceDialog";
+            this.RibbonReplace.ShowImage = true;
+            this.RibbonReplace.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonReplace_Click);
+            // 
             // RibbonDocVarGenerator
             // 
             this.RibbonDocVarGenerator.Label = "生成变量";
@@ -249,21 +277,21 @@
             this.RibbonTestDisplayCharCode.ShowImage = true;
             this.RibbonTestDisplayCharCode.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonTestDisplayCharCode_Click);
             // 
-            // RibbonFind
+            // RibbonVerticalSplitCell
             // 
-            this.RibbonFind.Label = "查找！";
-            this.RibbonFind.Name = "RibbonFind";
-            this.RibbonFind.OfficeImageId = "NavigationPaneFind";
-            this.RibbonFind.ScreenTip = "RibbonReplace";
-            this.RibbonFind.ShowImage = true;
+            this.RibbonVerticalSplitCell.Label = "行拆单元格";
+            this.RibbonVerticalSplitCell.Name = "RibbonVerticalSplitCell";
+            this.RibbonVerticalSplitCell.OfficeImageId = "SplitCells";
+            this.RibbonVerticalSplitCell.ShowImage = true;
+            this.RibbonVerticalSplitCell.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonVerticalSplitCell_Click);
             // 
-            // RibbonReplace
+            // RibbonHorizontalSplitCell
             // 
-            this.RibbonReplace.Label = "替换！";
-            this.RibbonReplace.Name = "RibbonReplace";
-            this.RibbonReplace.OfficeImageId = "ReplaceDialog";
-            this.RibbonReplace.ShowImage = true;
-            this.RibbonReplace.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonReplace_Click);
+            this.RibbonHorizontalSplitCell.Label = "列拆单元格";
+            this.RibbonHorizontalSplitCell.Name = "RibbonHorizontalSplitCell";
+            this.RibbonHorizontalSplitCell.OfficeImageId = "SplitCells";
+            this.RibbonHorizontalSplitCell.ShowImage = true;
+            this.RibbonHorizontalSplitCell.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RibbonHorizontalSplitCell_Click);
             // 
             // Ribbon
             // 
@@ -284,12 +312,14 @@
             this.RibbonEditGroup.PerformLayout();
             this.RibbonVariableGroup.ResumeLayout(false);
             this.RibbonVariableGroup.PerformLayout();
-            this.RibbonDevelGroup.ResumeLayout(false);
-            this.RibbonDevelGroup.PerformLayout();
             this.RibbonFindReplaceGroup.ResumeLayout(false);
             this.RibbonFindReplaceGroup.PerformLayout();
             this.box1.ResumeLayout(false);
             this.box1.PerformLayout();
+            this.RibbonDevelGroup.ResumeLayout(false);
+            this.RibbonDevelGroup.PerformLayout();
+            this.RibbonTableGroup.ResumeLayout(false);
+            this.RibbonTableGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -322,6 +352,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
         internal Microsoft.Office.Tools.Ribbon.RibbonMenu RibbonMenu;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonMenuAbout;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup RibbonTableGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonVerticalSplitCell;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton RibbonHorizontalSplitCell;
     }
 
     partial class ThisRibbonCollection {

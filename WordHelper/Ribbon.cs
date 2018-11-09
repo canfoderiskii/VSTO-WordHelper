@@ -109,6 +109,7 @@ namespace WordHelper {
         }
         private void RibbonTest_Click(object sender, RibbonControlEventArgs e)
         {
+            Table.SplitMultiPagesCell(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         private void RibbonTestDisplayCharCode_Click(object sender, RibbonControlEventArgs e)
         {
@@ -141,7 +142,16 @@ namespace WordHelper {
             Globals.ThisAddIn.Edit.ConvertLineBreak(Globals.ThisAddIn.Application.ActiveWindow.Selection);
         }
         #endregion
-
+        #region 表格
+        private void RibbonVerticalSplitCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            Table.SplitCellsVertical(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
+        private void RibbonHorizontalSplitCell_Click(object sender, RibbonControlEventArgs e)
+        {
+            Table.SplitCellsHorizontal(Globals.ThisAddIn.Application.ActiveWindow.Selection);
+        }
+        #endregion
         #region 快速查找替换相关功能
         private void RibbonReplace_Click(object sender, RibbonControlEventArgs e)
         {
@@ -214,7 +224,7 @@ namespace WordHelper {
         #region 主菜单部分
         private void RibbonWordHelperMenu_ItemsLoading(object sender, RibbonControlEventArgs e)
         {
-            
+
         }
         private void RibbonMenuAbout_Click(object sender, RibbonControlEventArgs e)
         {

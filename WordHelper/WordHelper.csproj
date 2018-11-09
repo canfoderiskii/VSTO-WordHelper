@@ -191,6 +191,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Edit.cs" />
+    <Compile Include="Table.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="VariableControl.cs">
       <SubType>UserControl</SubType>
